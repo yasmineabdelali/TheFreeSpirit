@@ -86,61 +86,43 @@
 
 
 <?php
-include "../controller/CommandC.php";
+include "../controller/CouponC.php";
 
-$c = new CommandC();
-$tab = $c->listCommands();
+$c = new CouponC();
+$tab = $c->listCoupons();
 
 ?>
 
 <center>
-    <h1>List of commands</h1>
+    <h1>List of Coupons</h1>
     <h2>
-        <a href="addCommand.php">Add command</a>
+        <a href="addCoupon.php">Add Coupon</a>
     </h2>
 </center>
 <table border="1" align="center" width="70%">
     <tr>
-        <th>Id Pannier</th>
-        <th>Id Command</th>
-        <th>Nom</th>
-        <th>Adresse</th>
-        <th>Produit</th>
-        <th>Quantite</th>
-        <th>Tel</th>
-        <th>Email</th>
+        <th>ID_coup</th>
+        <th>ID_com</th>
+        <th>Code_coup</th>
         <th>Update</th>
         <th>Delete</th>
     </tr>
 
+
     <?php
-    foreach ($tab as $command) {
+    foreach ($tab as $coupon) {
     ?>
         <tr>
-            <td><?= $command['id_pan']; ?></td>
-            <td><?= $command['id_com']; ?></td>
-            <td><?= $command['nom']; ?></td>
-            <td><?= $command['adresse']; ?></td>
-            <td><?= $command['produit']; ?></td>
-            <td>
-    
-             <input onclick="addToBasket(1500)" type="number" id="b" name="b" value="1">
-             
-             
-             <br><br>
-            <td><?= $command['tel']; ?></td>
-            <td><?= $command['email']; ?></td>
+            <td><?= $coupon['id_coup']; ?></td>
+            <td><?= $coupon['id_com']; ?></td>
+            <td><?= $coupon['code_coup']; ?></td>
             <td align="center">
-                <a href="updateCommand.php?id_pan=<?php echo $command['id_pan']; ?>">Update</a>
+                <a href="updateCoupon.php?id_coup=<?php echo $coupon['id_coup']; ?>">Update1</a>
             </td>
-
             <td>
-                <a href="deleteCommand.php?id_pan=<?php echo $command['id_pan']; ?>">Delete</a>
+                <a href="deleteCoupon.php?id_coup=<?php echo $coupon['id_coup']; ?>">Delete</a>
             </td>
         </tr>
-        <h2>
-        <a href="addCoupon.php">Use Coupon</a>
-        </h2>
     <?php
     }
     ?>

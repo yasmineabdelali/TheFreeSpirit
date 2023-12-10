@@ -1,40 +1,32 @@
 <?php
 
-include '../controller/CommandC.php';
-include '../model/Command.php';
+include '../controller/CouponC.php';
+include '../model/Coupon.php';
 
 // create client
-$Command = null;
+$Coupon = null;
 
 // create an instance of the controller
-$CommandC = new CommandC();
+$CouponC = new CouponC();
 if (
     isset($_POST["id_com"]) &&
-    isset($_POST["nom"]) &&
-    isset($_POST["adresse"]) &&
-    isset($_POST["produit"])&&
-    isset($_POST["tel"])&&
-    isset($_POST["email"])
-) {
+    isset($_POST["code_coup"])
+) 
+
+{
     if (
-        !empty($_POST["id_com"]) &&
-        !empty($_POST["nom"]) &&
-        !empty($_POST["adresse"]) &&
-        !empty($_POST["produit"]) &&
-        !empty($_POST["tel"])&&
-        !empty($_POST["email"])
+        !empty($_POST["id_com"])&&
+        !empty($_POST["code_coup"]) 
+
     ) {
-        $Command = new Command(
+        $Coupon = new Coupon(
             null,
             $_POST['id_com'],
-            $_POST['nom'],
-            $_POST['adresse'],
-            $_POST['produit'],
-            $_POST['tel'],
-            $_POST['email']
+            $_POST['code_coup']
+
         );
-        $CommandC->addCommand($Command);
-        header('Location:listCommands.php');
+        $CouponC->addCoupon($Coupon);
+        header('Location:listCoupons.php');
     }
 }
 
@@ -45,7 +37,7 @@ if (
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command</title>
+    <title>Coupon</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -127,50 +119,26 @@ if (
 
 <body>
     <header>
-        <h1>Command</h1>
+        <h1>Coupon</h1>
     </header>
 
-    <a href="listCommands.php">Back to list</a>
+    <a href="listCoupons.php">Back to list</a>
+    <a href="listCommands.php">Back to your Command</a>
     <hr>
 
     <form action="" method="POST">
         <table>
         <tr>
-                <td><label for="id_com">id command :</label></td>
+                <td><label for="id_com">id de command :</label></td>
                 <td>
-                    <input type="int" id="id_com" name="id_com" />
+                    <input type="text" id="id_com" name="id_com" />
                 </td>
             </tr>
 
             <tr>
-                <td><label for="nom">Nom :</label></td>
+                <td><label for="code_coup">Code coupon :</label></td>
                 <td>
-                    <input type="text" id="nom" name="nom" />
-                </td>
-            </tr>
-
-            <tr>
-                <td><label for="adresse">Adresse :</label></td>
-                <td>
-                    <input type="text" id="adresse" name="adresse" />
-                </td>
-            </tr>
-            <tr>
-                <td><label for="produit">Produit :</label></td>
-                <td>
-                    <input type="text" id="produit" name="produit" />
-                </td>
-            </tr>
-            <tr>
-                <td><label for="tel">Telephone :</label></td>
-                <td>
-                    <input type="text" id="tel" name="tel" />
-                </td>
-            </tr>
-            <tr>
-                <td><label for="email">Email :</label></td>
-                <td>
-                    <input type="text" id="email" name="email" />
+                    <input type="text" id="code_coup" name="code_coup" />
                 </td>
             </tr>
 
