@@ -11,9 +11,9 @@ $produit = null;
 // create an instance of the controller
 $produitC = new produitC();
 
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nom"]) && isset($_POST["prix"])) {
+if (isset($_POST["nom"]) && isset($_POST["prix"])) {
     if (!empty($_POST['nom']) && !empty($_POST["prix"])) {
-        $produit = new produit(null, $_POST['nom'], $_POST['prix']);
+        $produit = new produit( null,$_POST['nom'], $_POST['prix']);
         $produitC->addproduit($produit);
         header('Location: listproduits.php');
         exit(); // Ensure that no code is executed after the header
@@ -54,5 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nom"]) && isset($_POS
             </td>
         </table>
     </form>
+    <script>
+
+
+    </script>
 </body>
 </html>

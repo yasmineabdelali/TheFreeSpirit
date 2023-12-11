@@ -1,7 +1,4 @@
 <?php
-
-
-
 require '../config.php';
 
 class produitC
@@ -34,16 +31,14 @@ class produitC
 
 
     function addproduit($produit){
-        $sql = "INSERT INTO produit  
-        VALUES (NULL, :nom,:prix)";
+        $sql = "INSERT INTO produit (id,nom,prix) VALUES (NULL, :nom,:prix)";
         $db = config::getConnexion();
         try {
 
             $query = $db->prepare($sql);
             $query->execute([
                 'nom' => $produit->getNom(),
-                'prix' => $produit->getPrix(),
-                
+                'prix' => $produit->getPrix(),      
             ]);
         } catch (Exception $e) {
             echo 'Error: ' . $e->getMessage();
@@ -51,20 +46,21 @@ class produitC
     }
 
 
-    function listproduits($id_produit)
-    {
-        $sql = "SELECT * from produit where id =:id_produit";
-        $db = config::getConnexion();
-        try {
-            $query = $db->prepare($sql);
-            $query->bindValue(":id_produit",$id_produit);
-            $query->execute();
-            $produit = $query->fetch();
-            return $produit;
-        } catch (Exception $e) {
-            die('Error: ' . $e->getMessage());
-        }
+    function listproduits($id)
+{
+    $sql = "SELECT * FROM produit WHERE id = :id";
+    $db = config::getConnexion();
+    try {
+        $query = $db->prepare($sql);
+        $query->bindValue(":id", $id);
+        $query->execute();
+        $produit = $query->fetch();
+        return $produit;
+    } catch (Exception $e) {
+        die('Error: ' . $e->getMessage());
     }
+}
+
 
     function updateproduit($produit, $id)
     {   
@@ -73,22 +69,23 @@ class produitC
             $query = $db->prepare(
                 'UPDATE produit SET 
                     nom = :nom, 
-                    prix = :prix,
-                   
-                WHERE idproduit= :idproduit'
+                    prix = :prix
+                WHERE id = :id'
             );
-            
+             
             $query->execute([
-                'idproduit' => $id,
+                'id' => $id,
                 'nom' => $produit->getNom(),
                 'prix' => $produit->getPrix(),
-                
             ]);
             
             echo $query->rowCount() . " records UPDATED successfully <br>";
-        } catch (PDOException $e) {
-            $e->getMessage();
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage();
         }
     }
+    
+
+    
 }
 ?>

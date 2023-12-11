@@ -12,7 +12,7 @@ class produit
 
     public function __construct($idproduit, $n, $p)
     {
-        $this->idproduit = $id;
+        $this->idproduit = $idproduit;
         $this->nom = $n;
         $this->prix = $p;
 
@@ -27,13 +27,13 @@ class produit
 
     public function getNom()
     {
-        return $this->nom_produit;
+        return $this->nom;
     }
 
 
     public function setNom($new_nom)
     {
-        $this->nom_produit = $new_nom;
+        $this->nom = $new_nom;
 
         return $this;
     }
@@ -41,13 +41,13 @@ class produit
 
     public function getPrix()
     {
-        return $this->prix_produit;
+        return $this->prix;
     }
 
 
     public function setprix($new_prix)
     {
-        $this->prix_produit = $new_prix;
+        $this->prix = $new_prix;
 
         return $this;
     }

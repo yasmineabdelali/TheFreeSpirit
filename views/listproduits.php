@@ -9,7 +9,7 @@ $tab = $c->tab_produit();
 <center>
     <h1>List of produit</h1>
     <h2>
-        <a href="addproduit.php">Add produit</a>
+        <a href="addproduit.php">Add product</a>
     </h2>
 </center>
 <table border="1" align="center" width="70%">
@@ -32,7 +32,7 @@ $tab = $c->tab_produit();
             <td><?= $produit['prix']; ?></td>
 
             <td align="center">
-                <a href="updateproduit.php?id=<?php echo $produit['id']; ?>">Update</a>
+            <a href="updateproduit.php?id=<?php echo $produit['id']; ?>">Update</a>
             </td>
             
             <td>

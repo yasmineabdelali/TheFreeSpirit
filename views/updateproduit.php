@@ -9,11 +9,7 @@ $produit = null;
 $produitC = new produitC();
 
 
-if (
-    isset($_POST["nom"]) &&
-    isset($_POST["prix"]) 
-   
-    ) {
+if (isset($_POST["nom"]) && isset($_POST["prix"])) {
         if (!empty($_POST['nom']) && !empty($_POST["prix"]) 
        
     ) {
@@ -23,7 +19,7 @@ if (
             $_POST['prix'],
         );
         var_dump($produit);
-        $produitC->updateproduit($joueur, $_GET['idproduit']);
+        $produitC->updateproduit($produit, $_GET['id']);
         header('Location:listproduits.php');
     }
 }
@@ -44,17 +40,17 @@ if (
     <hr>
 
     <?php
-    if (isset($_GET['idproduit'])) {
+    if (isset($_GET['id'])) {
         $oldproduit = $produitC->listproduits($_GET['id']);
         
     ?>
 
-        <form action="" method="POST">
+<form action="updateproduit.php" method="POST">
             <table>
             <tr>
-                    <td><label for="idproduit">Idproduit :</label></td>
+                    <td><label for="id">Idproduit :</label></td>
                     <td>
-                        <input type="text" id="idproduit" name="idproduit" value="<?php echo $_GET['id'] ?>" readonly />
+                    <input type="text" id="id" name="id" value="<?php echo $_GET['id'] ?>" readonly />
                     </td>
                 </tr>
                 <tr>
